@@ -13,6 +13,10 @@
 
 [Download](https://github.com/aly-abdullah/reclaim/releases/latest) · [How it works](#how-it-works) · [Build from source](#build-from-source)
 
+<br>
+
+<img src="docs/preview.png" width="820" alt="Reclaim window showing memory in use, the activity chart and automation settings">
+
 </div>
 
 ## Why Reclaim
