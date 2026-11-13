@@ -50,12 +50,13 @@ These calls need administrator rights, which is why Reclaim asks for elevation w
 ## Requirements
 
 - Windows 10 or 11 (x64)
-- [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)
 
 ## Install
 
-1. Download `Reclaim.exe` from the [latest release](https://github.com/aly-abdullah/reclaim/releases/latest).
-2. Put it in a permanent folder and run it. Accept the administrator prompt.
+1. Download `Reclaim-Setup-<version>.exe` from the [latest release](https://github.com/aly-abdullah/reclaim/releases/latest) and run it.
+2. Accept the administrator prompt. Reclaim installs into `Program Files`, adds a Start menu shortcut and can start right away.
+
+Nothing else is needed: the app is self-contained, so .NET does not have to be installed. Uninstall it from **Settings > Apps** like any other app; that also removes its sign-in task.
 
 Windows SmartScreen may warn about an unsigned app the first time. Choose **More info**, then **Run anyway**.
 
@@ -67,17 +68,19 @@ Windows SmartScreen may warn about an unsigned app the first time. Choose **More
 
 ## Build from source
 
+You need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0). To also build the installer, install [Inno Setup 6](https://jrsoftware.org/isdl.php).
+
 ```bash
 git clone https://github.com/aly-abdullah/reclaim.git
 cd reclaim
-dotnet build -c Debug
 ```
 
-Publish a single-file build into `App/`:
+Then double-click `Build.cmd` (or run `build.ps1`). It produces:
 
-```bash
-dotnet publish -c Release -o App
-```
+- `App\Reclaim.exe`, a self-contained single-file build
+- `dist\Reclaim-Setup-<version>.exe`, the installer (only when Inno Setup is installed)
+
+For a quick debug build: `dotnet build -c Debug`.
 
 ### Project layout
 
@@ -93,6 +96,8 @@ Controls/             ring gauge, composition bar and activity chart
 Ui/                   view model, tray icon and tray menu
 Themes/Theme.xaml     design tokens and control styles
 MainWindow.xaml(.cs)  the window
+installer/Reclaim.iss Inno Setup script for the installer
+build.ps1             builds the exe and the installer
 ```
 
 ## Contributing
